@@ -15,6 +15,7 @@ black = "^22.3.0"
 flake8 = "^4.0.1"
 sqlmodel = "^0.0.6"
 pydantic = "^1.9.0"
+uvicorn = "^0.17.6"
 
 [tool.poetry.dev-dependencies]
 ipython = "^8.2.0"

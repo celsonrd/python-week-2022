@@ -1,7 +1,7 @@
-#from dataclasses import dataclass
+#from dataclasses import dataclass #1 refactor
 from typing import Optional
 from sqlmodel import SQLModel, Field
-from sqlmodel import select
+from sqlmodel import select #2 refactor
 from pydantic import validator
 from statistics import mean
 from datetime import datetime
@@ -22,19 +22,14 @@ class Beer(SQLModel, table=True):
         if v < 1 or v > 10:
             raise RuntimeError(f"{field.name} must be between 1 and 10")
         return v
-    
+
     @validator("rate", always=True)
     def calculate_rate(cls, v, values):
-        rate = mean(
-            [
-                values["flavor"],
-                values["image"],
-                values["cost"]
-            ]
-        )
+        rate = mean([values["flavor"], values["image"], values["cost"]])
         return int(rate)
 
-try:
-    brewdog = Beer(name="Brewdog", style="NEIPA", flavor=5, image=8, cost=8) 
-except RuntimeError:
-    print("Deu errado")
+
+#try:
+brewdog = Beer(name="Brewdog", style="NEIPA", flavor=5, image=8, cost=8)
+#except RuntimeError:
+    #print("Error!!!")
